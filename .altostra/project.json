@@ -1,6 +1,6 @@
 {
-	"id": "altostra-template-hello-worl-w500524",
-	"name": "altostra-template-hello-world-nodejs",
+	"id": "altostra-template-hello-world-python",
+	"name": "altostra-template-hello-world-python",
 	"description": "Altostra Hello World project template",
 	"created": "2020-10-08T10:32:10.754Z",
 	"blueprints": [
@@ -120,7 +120,7 @@
 				}
 			},
 			"id": "ckg0olvk10000mdmpeb4s045g",
-			"name": "altostra-template-hello-world-nodejs",
+			"name": "altostra-template-hello-world-python",
 			"unsafe": false
 		}
 	],

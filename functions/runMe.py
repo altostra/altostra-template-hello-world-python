@@ -16,8 +16,7 @@ region = os.environ.get('AWS_REGION')
 is_local = os.environ.get('AWS_SAM_LOCAL')
 table_name = os.environ.get('TABLE_QUERYME01')
 
-dynamo_db = isLocal if None else boto3.client('dynamodb')
-dynamoDb = !isLocal && new aws.DynamoDB.DocumentClient({ region })
+dynamo_db = is_local if None else boto3.client('dynamodb')
 
 def handler(event, context):
     if event['httpMethod'] == 'GET':
@@ -26,7 +25,7 @@ def handler(event, context):
                 'statusCode': 200,
                 'body': get_message(),
             }
-        except BaseException:
+        except BaseException as e:
             return {
                 'statusCode': 500,
                 'body': 'Unable to get the message due to a serverless error.',
@@ -51,7 +50,7 @@ def handler(event, context):
 def get_message():
     greeting = 'Hi!'
 
-    if isLocal:
+    if is_local:
         return greeting + message
 
     try:
@@ -64,16 +63,16 @@ def get_message():
             }
         )
 
-        greeting = (
-            response['Item'] && response['Item']['name']
-                if 'Hi ' + response['Item']['name'] + '!'
-                else 'Hi!'
-        )
+        
+        if 'Item' in response and 'name' in response['Item']:
+            greeting = 'Hi ' + response['Item']['name']['S'] + '!'
+        else:
+            greeting = 'Hi!'
 
         return greeting + message
     except BaseException as err:
         msg = 'Failed to get name from storage.'
-        print(message, err)
+        print(msg, err)
 
         raise
 

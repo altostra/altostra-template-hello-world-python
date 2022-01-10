@@ -1,4 +1,4 @@
-# Hello World Template - Node.js
+# Hello World Template - Python
 
 # Welcome to Altostra
 We have created this Hello World project for you to get the feel for our platform and to get you started with the next-gen of cloud development.
